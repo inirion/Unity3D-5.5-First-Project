@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour {
-    int hp = 50;
-	// Use this for initialization
-	void Start () {
-		
-	}
+    [SerializeField]
+    private int hp;
+
+    public int Hp
+    {
+        get{return hp;}
+
+        set{hp = value;}
+    }
+
+    // Use this for initialization
+    void Start () {
+        hp = 50;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -17,7 +27,7 @@ public class EnemyScript : MonoBehaviour {
         }
 	}
 
-    void DeductPoints(int hp)
+    public void DeductPoints(int hp)
     {
         this.hp -= hp;
     }

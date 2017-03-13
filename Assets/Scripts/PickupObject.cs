@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupObject : MonoBehaviour {
-    GameObject mainCamera;
-    bool carrying;
-    GameObject carriedObject;
-    public float distance;
-    public float smooth;
+    private GameObject mainCamera;
+    private bool carrying;
+    private GameObject carriedObject;
+    [SerializeField]
+    private float distance;
+    [SerializeField]
+    private float smooth;
     // Use this for initialization
     void Start () {
         mainCamera = GameObject.FindWithTag("MainCamera");
+        distance = 3;
+        smooth = 4;
     }
 	
 	// Update is called once per frame

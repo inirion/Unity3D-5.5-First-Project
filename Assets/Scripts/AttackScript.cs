@@ -3,14 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour {
-    public int damage;
-    public float toTarget;
-    public float range;
-	// Use this for initialization
-	void Start () {
-        damage = 10;
-        range = 5;
-	}
+    [SerializeField]
+    private int damage;
+    [SerializeField]
+    private float toTarget;
+    [SerializeField]
+    private float range;
+    private AnimateWeapon weapon;
+
+    public int Damage
+    {
+        get{return damage;}
+
+        set{damage = value;}
+    }
+
+    public float ToTarget
+    {
+        get{return toTarget;}
+
+        set{toTarget = value;}
+    }
+
+    public float Range
+    {
+        get{return range;}
+        set{range = value;}
+    }
+
+    // Use this for initialization
+    void Start () {
+        Damage = 10;
+        Range = 5;
+        weapon = GameObject.Find("Weapon").GetComponent<AnimateWeapon>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,10 +44,11 @@ public class AttackScript : MonoBehaviour {
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward),out hit)){
-                toTarget = hit.distance;
-                if(toTarget < range && !AnimateWeapon.isAttacking)
+                ToTarget = hit.distance;
+                if(ToTarget < Range && !weapon.IsAttacking)
                 {
-                    hit.transform.SendMessage("DeductPoints", damage, SendMessageOptions.DontRequireReceiver);
+                    hit.transform.GetComponent<EnemyScript>().DeductPoints(Damage);
+                    //hit.transform.SendMessage("DeductPoints", Damage, SendMessageOptions.DontRequireReceiver);
                 }
             }
         }

@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinSystem : MonoBehaviour {
-    public static int coinsCollected;
-	// Use this for initialization
-	void Start () {
-        coinsCollected = 0;
+    [SerializeField]
+    private int coinsCollected;
+
+    public int CoinsCollected
+    {
+        get{return coinsCollected;}
+
+        set{coinsCollected = value;}
+    }
+
+    // Use this for initialization
+    void Start () {
+        CoinsCollected = 0;
     }
 	
 	// Update is called once per frame
@@ -16,6 +25,6 @@ public class CoinSystem : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.Label(new Rect(10,10,80,40),( "Coins : " + coinsCollected));
+        GUI.Label(new Rect(10,10,80,40),( "Coins : " + CoinsCollected));
     }
 }

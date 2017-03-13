@@ -3,22 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimateWeapon : MonoBehaviour {
-    public static bool isAttacking;
-	// Use this for initialization
-	void Start () {
-        isAttacking = false;
-	}
+    [SerializeField]
+    private bool isAttacking;
+    private Animation attackAnimation;
+    public bool IsAttacking
+    {
+        get{return isAttacking;}
+
+        set{isAttacking = value;}
+    }
+
+    // Use this for initialization
+    void Start () {
+        IsAttacking = false;
+        attackAnimation = GetComponent<Animation>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Attack") && !GetComponent<Animation>().IsPlaying("AttackAnimation"))
+        if (Input.GetButtonDown("Attack") && !attackAnimation.IsPlaying("AttackAnimation"))
         {
-            isAttacking = true;
-            GetComponent<Animation>().Play("AttackAnimation");
+            IsAttacking = true;
+            attackAnimation.Play("AttackAnimation");
         }
-        if (!GetComponent<Animation>().IsPlaying("AttackAnimation"))
+        if (!attackAnimation.IsPlaying("AttackAnimation"))
         {
-            isAttacking = false;
+            IsAttacking = false;
         }
 	}
 
