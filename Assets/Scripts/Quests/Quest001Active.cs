@@ -2,15 +2,49 @@
 using UnityEngine.UI;
 
 public class Quest001Active : MonoBehaviour {
-    public GameObject messageBox;
-    public GameObject textBox;
+    [SerializeField]
+    private GameObject messageBox;
+    [SerializeField]
+    private GameObject textBox;
+    [SerializeField]
+    private GameObject questText;
+    [SerializeField]
+    private GameObject QuestItemToClose;
+    [SerializeField]
+    private GameObject QuestItemToShow;
 
-    public GameObject QuestItemToClose;
-    public GameObject QuestItemToShow;
+    public GameObject MessageBox
+    {
+        get{return messageBox;}
+
+        set{messageBox = value;}
+    }
+
+    public GameObject TextBox
+    {
+        get{return textBox;}
+
+        set{textBox = value;}
+    }
+
+    public GameObject QuestItemToClose1
+    {
+        get{return QuestItemToClose;}
+
+        set{QuestItemToClose = value;}
+    }
+
+    public GameObject QuestItemToShow1
+    {
+        get{return QuestItemToShow;}
+
+        set{QuestItemToShow = value;}
+    }
+
+    private
     // Use this for initialization
     void Start () {
-		
-	}
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,6 +62,7 @@ public class Quest001Active : MonoBehaviour {
                 {
                     if (hit.distance <= 5)
                     {
+
                         Click(true);
                     }
                 }
@@ -41,6 +76,7 @@ public class Quest001Active : MonoBehaviour {
         {
             messageBox.SetActive(true);
             textBox.GetComponent<Text>().text = "Znalazłeś złoto!";
+            questText.GetComponent<Text>().text = "Zadanie : Oddaj worek ze złotem";
             Invoke("HideMessage", 3);
             gameObject.SetActive(false);
             QuestItemToClose.SetActive(false);

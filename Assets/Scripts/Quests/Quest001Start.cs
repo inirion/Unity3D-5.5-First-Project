@@ -64,9 +64,9 @@ public class Quest001Start : MonoBehaviour {
                 if (!textBoxOnCheck)
                 {
                     textBoxOnCheck = true;
-                    messageText = "Wieśniak : Ktoś mi zajumał monety, odnajdz je przybyszu!\nSłyszałem że źli ludzie zabrali je do swojego obzu.";
+                    messageText = "Wieśniak : Podróżniku potrzebuje twojej pomocy !\nBanda zbujów ukradła mi worek ze złotem, odnajdz go\na czeka cię wieczna chwała.";
                     textBox.GetComponent<Text>().text = messageText;
-                    questName = "Zadanie : Mamona";
+                    questName = "Zadanie : Znajdz worek ze złotem";
                     questText.GetComponent<Text>().text = questName;
                     messageBox.SetActive(true);
                 }

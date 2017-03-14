@@ -47,8 +47,8 @@ public class AttackScript : MonoBehaviour {
                 ToTarget = hit.distance;
                 if(ToTarget < Range && !weapon.IsAttacking)
                 {
+                    if(hit.transform.GetComponent<EnemyScript>() != null)// if hitted target have EnemyScript attached
                     hit.transform.GetComponent<EnemyScript>().DeductPoints(Damage);
-                    //hit.transform.SendMessage("DeductPoints", Damage, SendMessageOptions.DontRequireReceiver);
                 }
             }
         }

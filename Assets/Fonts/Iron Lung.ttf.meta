@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d700f161587071940b9e1fdcba3ad7f1
+timeCreated: 1489518736
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Iron Lung
+  fontNames:
+  - Iron Lung
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
