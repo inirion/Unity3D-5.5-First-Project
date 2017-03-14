@@ -64,7 +64,7 @@ public class Quest001Start : MonoBehaviour {
                 if (!textBoxOnCheck)
                 {
                     textBoxOnCheck = true;
-                    messageText = "Wieśniak : Podróżniku potrzebuje twojej pomocy !\nBanda zbujów ukradła mi worek ze złotem, odnajdz go\na czeka cię wieczna chwała.";
+                    messageText = "Wieśniak : Podróżniku potrzebuje twojej pomocy ! Banda zbójów ukradła mi worek ze złotem, odnajdz go a czeka cię wieczna chwała.";
                     textBox.GetComponent<Text>().text = messageText;
                     questName = "Zadanie : Znajdz worek ze złotem";
                     questText.GetComponent<Text>().text = questName;
