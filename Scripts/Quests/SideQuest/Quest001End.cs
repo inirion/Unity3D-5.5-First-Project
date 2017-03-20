@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
-
+using System.Collections;
 
 public class Quest001End : MonoBehaviour
 {
@@ -21,43 +21,20 @@ public class Quest001End : MonoBehaviour
     {
         if (Input.GetButtonDown("PickUp"))
         {
-            int x = Screen.width / 2;
-            int y = Screen.height / 2;
-
-            Ray ray = GameObject.FindWithTag("MainCamera").GetComponent<Camera>().ScreenPointToRay(new Vector3(x, y));
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (PlayerCasting.Instance.HittedTarget.distance <= 5 && PlayerCasting.Instance.HittedTarget.transform.name == "QuestEnd_001")
             {
-                if (hit.collider.tag == "NPC001")
-                {
-                    if (hit.distance <= 5)
-                    {
-                        Click(true);
-                        clicks++;
-                    }
-                }
-                else
-                {
-                    Click(false);
-                }
+                StartCoroutine(Click());
             }
         }
     }
 
-    void Click(bool show)
+    private IEnumerator Click()
     {
-        if (!show) messageBox.SetActive(show);
-        else {
-            if (clicks % 2 == 0)
-            {
-                messageBox.SetActive(false);
-            }
-            else
-            {
-                textBox.GetComponent<Text>().text = "Wieśniak : Dzięki wielkie za pomoc!";
-                questText.GetComponent<Text>().text = "Zadanie :";
-                messageBox.SetActive(true);
-            }
-        }
+
+        messageBox.SetActive(true);
+        textBox.GetComponent<Text>().text = "Wieśniak : Dzięki wielkie za pomoc!";
+        yield return new WaitForSeconds(2.0f);
+        questText.GetComponent<Text>().text = "Zadanie :";   
+        messageBox.SetActive(false);
     }
 }

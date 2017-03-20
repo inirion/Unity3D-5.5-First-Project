@@ -9,7 +9,6 @@ public class AttackScript : MonoBehaviour {
     private float toTarget;
     [SerializeField]
     private float range;
-    private AnimateWeapon weapon;
 
     public int Damage
     {
@@ -35,21 +34,16 @@ public class AttackScript : MonoBehaviour {
     void Start () {
         Damage = 10;
         Range = 5;
-        weapon = GameObject.Find("Weapon").GetComponent<AnimateWeapon>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Attack"))
+        if (Input.GetButtonDown("Attack") && GameObject.Find("Weapon") != null)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward),out hit)){
-                ToTarget = hit.distance;
-                if(ToTarget < Range && !weapon.IsAttacking)
-                {
-                    if(hit.transform.GetComponent<EnemyScript>() != null)// if hitted target have EnemyScript attached
-                    hit.transform.GetComponent<EnemyScript>().DeductPoints(Damage);
-                }
+            if(ToTarget < Range && !GameObject.Find("Weapon").GetComponent<AnimateWeapon>().IsAttacking)
+            {
+                if(PlayerCasting.Instance.HittedTarget.transform.GetComponent<EnemyScript>() != null)// if hitted target have EnemyScript attached
+                    PlayerCasting.Instance.HittedTarget.transform.GetComponent<EnemyScript>().DeductPoints(Damage);
             }
         }
 	}

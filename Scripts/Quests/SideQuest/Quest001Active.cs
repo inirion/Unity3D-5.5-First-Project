@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 public class Quest001Active : MonoBehaviour {
@@ -51,42 +52,23 @@ public class Quest001Active : MonoBehaviour {
     {
         if (Input.GetButtonDown("PickUp"))
         {
-            int x = Screen.width / 2;
-            int y = Screen.height / 2;
-
-            Ray ray = GameObject.FindWithTag("MainCamera").GetComponent<Camera>().ScreenPointToRay(new Vector3(x, y));
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (PlayerCasting.Instance.HittedTarget.distance <= 5 && PlayerCasting.Instance.HittedTarget.transform.tag == "LootBagQuest001")
             {
-                if (hit.collider.tag == "LootBagQuest001")
-                {
-                    if (hit.distance <= 5)
-                    {
 
-                        Click(true);
-                    }
-                }
+                StartCoroutine(Click());
             }
         }
     }
 
-    void Click(bool b)
+    private IEnumerator Click()
     {
-        if (b)
-        {
-            messageBox.SetActive(true);
-            textBox.GetComponent<Text>().text = "Znalazłeś złoto!";
-            questText.GetComponent<Text>().text = "Zadanie : Oddaj worek ze złotem";
-            Invoke("HideMessage", 3);
-            gameObject.SetActive(false);
-            QuestItemToClose.SetActive(false);
-            QuestItemToShow.SetActive(true);
-
-        }
-    }
-
-    void HideMessage()
-    {
+        messageBox.SetActive(true);
+        textBox.GetComponent<Text>().text = "Znalazłeś złoto!";
+        yield return new WaitForSeconds(2.0f);
+        questText.GetComponent<Text>().text = "Zadanie : Oddaj worek ze złotem";
+        QuestItemToClose.SetActive(false);
+        QuestItemToShow.SetActive(true);
         messageBox.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
